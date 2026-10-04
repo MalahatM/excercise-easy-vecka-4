@@ -1,0 +1,41 @@
+# C# build files 
+
+bin/ 
+
+obj/ 
+
+ 
+
+# Visual Studio / VS Code 
+
+.vs/ 
+
+.vscode/ 
+
+ 
+
+# User-specific files 
+
+*.user 
+
+*.suo 
+
+ 
+
+# macOS 
+
+.DS_Store 
+
+ 
+
+# Environment files 
+
+.env 
+
+ 
+
+# Log files 
+
+*.log 
+
+ 
