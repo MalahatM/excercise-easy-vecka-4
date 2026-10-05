@@ -128,3 +128,123 @@ while (choice != 4)
             break;
     }
 }
+
+
+
+//uppgift 3
+// Create a dictionary to store student names and grades
+Dictionary<string, int> studentGrades = new Dictionary<string, int>();
+
+// Variable for the user's menu choice
+int gradeChoice = 0;
+
+// Keep showing the menu until the user chooses to exit
+while (gradeChoice != 5)
+{
+    Console.WriteLine("\n--- Student Grades ---");
+    Console.WriteLine("1. Add student and grade");
+    Console.WriteLine("2. Update grade");
+    Console.WriteLine("3. Show all students and grades");
+    Console.WriteLine("4. Calculate average grade");
+    Console.WriteLine("5. Exit");
+    Console.Write("Enter your choice: ");
+
+    gradeChoice = Convert.ToInt32(Console.ReadLine());
+
+    switch (gradeChoice)
+    {
+        case 1:
+            // Ask for the student's name
+            Console.Write("Enter student name: ");
+            string studentNameToAdd = Console.ReadLine()!;
+
+            // Check if the student already exists
+            if (studentGrades.ContainsKey(studentNameToAdd))
+            {
+                Console.WriteLine("Student already exists.");
+            }
+            else
+            {
+                // Ask for the student's grade
+                Console.Write("Enter grade: ");
+                int studentGrade = Convert.ToInt32(Console.ReadLine());
+
+                // Add the student and grade to the dictionary
+                studentGrades.Add(studentNameToAdd, studentGrade);
+
+                Console.WriteLine("Student added.");
+            }
+
+            break;
+
+        case 2:
+            // Ask which student's grade should be updated
+            Console.Write("Enter student name: ");
+            string studentNameToUpdate = Console.ReadLine()!;
+
+            // Check if the student exists
+            if (studentGrades.ContainsKey(studentNameToUpdate))
+            {
+                // Ask for the new grade
+                Console.Write("Enter new grade: ");
+                int updatedGrade = Convert.ToInt32(Console.ReadLine());
+
+                // Update the student's grade
+                studentGrades[studentNameToUpdate] = updatedGrade;
+
+                Console.WriteLine("Grade updated.");
+            }
+            else
+            {
+                Console.WriteLine("Student not found.");
+            }
+
+            break;
+
+        case 3:
+            // Show all students and their grades
+            foreach (var student in studentGrades)
+            {
+                Console.WriteLine(
+                    $"Student: {student.Key}, Grade: {student.Value}"
+                );
+            }
+
+            break;
+
+        case 4:
+            // Check that there are students before calculating the average
+            if (studentGrades.Count > 0)
+            {
+                int gradeSum = 0;
+
+                // Add all grades together
+                foreach (var student in studentGrades)
+                {
+                    gradeSum += student.Value;
+                }
+
+                // Calculate the average grade
+                double gradeAverage =
+                    (double)gradeSum / studentGrades.Count;
+
+                Console.WriteLine($"Average grade: {gradeAverage}");
+            }
+            else
+            {
+                Console.WriteLine("No students available.");
+            }
+
+            break;
+
+        case 5:
+            // Exit the program
+            Console.WriteLine("Exiting the program.");
+            break;
+
+        default:
+            // Handle an invalid menu choice
+            Console.WriteLine("Invalid choice.");
+            break;
+    }
+}
