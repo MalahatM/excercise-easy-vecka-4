@@ -248,3 +248,99 @@ while (gradeChoice != 5)
             break;
     }
 }
+
+//uppgift 4
+// Create a queue to store tasks
+Queue<string> taskQueue = new Queue<string>();
+
+// Variable for the user's menu choice
+int queueChoice = 0;
+
+// Keep showing the menu until the user chooses to exit
+while (queueChoice != 5)
+{
+    Console.WriteLine("\n--- Task Manager ---");
+    Console.WriteLine("1. Add a task");
+    Console.WriteLine("2. Show next task");
+    Console.WriteLine("3. Complete a task");
+    Console.WriteLine("4. Show all remaining tasks");
+    Console.WriteLine("5. Exit");
+    Console.Write("Enter your choice: ");
+
+    queueChoice = Convert.ToInt32(Console.ReadLine());
+
+    switch (queueChoice)
+    {
+        case 1:
+            // Ask the user to enter a new task
+            Console.Write("Enter a new task: ");
+            string newTask = Console.ReadLine()!;
+
+            // Add the new task to the end of the queue
+            taskQueue.Enqueue(newTask);
+
+            Console.WriteLine("Task added.");
+            break;
+
+        case 2:
+            // Check if there are any tasks in the queue
+            if (taskQueue.Count > 0)
+            {
+                // Show the first task without removing it
+                string nextTask = taskQueue.Peek();
+
+                Console.WriteLine($"Next task: {nextTask}");
+            }
+            else
+            {
+                Console.WriteLine("No tasks in the queue.");
+            }
+
+            break;
+
+        case 3:
+            // Check if there are any tasks in the queue
+            if (taskQueue.Count > 0)
+            {
+                // Remove and return the first task in the queue
+                string completedTask = taskQueue.Dequeue();
+
+                Console.WriteLine($"Completed task: {completedTask}");
+            }
+            else
+            {
+                Console.WriteLine("No tasks to complete.");
+            }
+
+            break;
+
+        case 4:
+            // Check if there are any tasks in the queue
+            if (taskQueue.Count > 0)
+            {
+                Console.WriteLine("Remaining tasks:");
+
+                // Show all remaining tasks
+                foreach (string task in taskQueue)
+                {
+                    Console.WriteLine(task);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No tasks in the queue.");
+            }
+
+            break;
+
+        case 5:
+            // Exit the task manager
+            Console.WriteLine("Exiting task manager.");
+            break;
+
+        default:
+            // Handle an invalid menu choice
+            Console.WriteLine("Invalid choice.");
+            break;
+    }
+}
