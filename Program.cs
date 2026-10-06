@@ -344,3 +344,89 @@ while (queueChoice != 5)
             break;
     }
 }
+//uppgift 5
+// Create a stack to store text inputs
+Stack<string> textStack = new Stack<string>();
+
+// Variable for the user's menu choice
+int stackChoice = 0;
+
+// Keep showing the menu until the user chooses to exit
+while (stackChoice != 4)
+{
+    Console.WriteLine("\n--- Text and Undo ---");
+    Console.WriteLine("1. Add text");
+    Console.WriteLine("2. Undo last text");
+    Console.WriteLine("3. Show current text");
+    Console.WriteLine("4. Exit");
+    Console.Write("Enter your choice: ");
+
+    stackChoice = Convert.ToInt32(Console.ReadLine());
+
+    switch (stackChoice)
+    {
+        case 1:
+            // Ask the user to enter text
+            Console.Write("Enter text: ");
+            string newText = Console.ReadLine()!;
+
+            // Add the new text to the top of the stack
+            textStack.Push(newText);
+
+            Console.WriteLine("Text added.");
+            break;
+
+        case 2:
+            // Check if there is any text in the stack
+            if (textStack.Count > 0)
+            {
+                // Remove the most recently added text
+                string removedText = textStack.Pop();
+
+                Console.WriteLine($"Removed: {removedText}");
+
+                // Show the current text after undo
+                Console.WriteLine("Current text:");
+
+                foreach (string text in textStack)
+                {
+                    Console.WriteLine(text);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Nothing to undo.");
+            }
+
+            break;
+
+        case 3:
+            // Check if there is any text in the stack
+            if (textStack.Count > 0)
+            {
+                Console.WriteLine("Current text:");
+
+                // Show everything currently stored in the stack
+                foreach (string text in textStack)
+                {
+                    Console.WriteLine(text);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No text available.");
+            }
+
+            break;
+
+        case 4:
+            // Exit the program
+            Console.WriteLine("Exiting the program.");
+            break;
+
+        default:
+            // Handle an invalid menu choice
+            Console.WriteLine("Invalid choice.");
+            break;
+    }
+}
